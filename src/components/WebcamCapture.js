@@ -21,6 +21,8 @@ class WebcamCapture extends Component {
 
   render() {
     const videoConstraints = {
+      width: 1280,
+      height: 720,
       facingMode: "user"
     };
 
@@ -28,11 +30,10 @@ class WebcamCapture extends Component {
       <div>
         <Webcam
           audio={false}
-          // height={1280}
+          height={350}
           ref={this.setRef}
-          screenshotQuality={1}
           screenshotFormat="image/jpeg"
-          // width={720}
+          width={350}
           videoConstraints={videoConstraints}
         />
         <button onClick={this.capture}>Capture photo</button>
