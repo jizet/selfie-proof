@@ -8,12 +8,14 @@ import DialogContent from '@material-ui/core/DialogContent';
 import DialogContentText from '@material-ui/core/DialogContentText';
 import DialogTitle from '@material-ui/core/DialogTitle';
 
-import ConfirmationDialog from './ConfirmationDialog'
-
 const Container = styled.div`
-
+display: block;
+margin-left: auto;
+margin-right: auto;
+width: 40%;
 `
-const Content = styled.div``
+const Content = styled.div`
+`
 
 const Footer = styled.div``
 
@@ -46,6 +48,22 @@ class WebcamCapture extends Component {
     this.handleClickOpen();
   };
 
+  submitImage = () => {
+    var url = 'https://example.com/profile';
+    const data = {image: this.state.screenshot}
+    fetch(url, {
+      method: 'POST',
+      mode: 'no-cors',
+      body: JSON.stringify(data),
+      headers:{
+        'Content-Type': 'application/json'
+      }
+    }).then(res => res.json())
+    .catch(error => console.error('Error:', error))
+    .then(response => console.log('Success:', response));
+    this.setState({ open: false });
+  }
+
   render() {
     const videoConstraints = {
       width: 1280,
@@ -58,10 +76,11 @@ class WebcamCapture extends Component {
         <Content>
           <Webcam
             audio={false}
-            height={350}
+            height={500}
             ref={this.setRef}
             screenshotFormat="image/jpeg"
-            width={350}
+            style={{objectFit: 'cover', overflow: 'auto'}}
+            width={500}
             videoConstraints={videoConstraints}
           />
         </Content>
@@ -69,6 +88,7 @@ class WebcamCapture extends Component {
           <Button
             variant="contained"
             color="primary"
+            style={{marginTop: '10px'}}
             onClick={this.capture}
           >
             Capture photo
@@ -89,16 +109,12 @@ class WebcamCapture extends Component {
               <Button onClick={this.handleClose} color="primary">
                 Disagree
               </Button>
-              <Button onClick={this.handleClose} color="primary" autoFocus>
+              <Button onClick={this.submitImage} color="primary" autoFocus>
                 Agree
               </Button>
             </DialogActions>
           </Dialog>
         </Footer>
-        {/* <ConfirmationDialog
-          Webcam={this.webcam}
-          photo={this.state.screenshot}
-        /> */}
       </Container>
     );
   }

@@ -3,30 +3,28 @@ import styled from 'styled-components'
 import WebcamCapture from '../components/WebcamCapture'
 
 const AppContainer = styled.div`
-  background-image: url("bg.jpg");
 `
-const ListContainer = styled.div`
+const Content = styled.div`
   display:flex;
   justify-content: center;
   flex-direction: row;
-  margin-top: 32px;
   height: 100%;
   width: 100%;
 `
 
 class Main extends Component {
 
-  constructor(props, context) {
-    super(props, context)
+  constructor(props) {
+    super(props)
   }
 
   render () {
     return (
       <div className='container'>
         <AppContainer>
-          <ListContainer>
+          <Content>
             <WebcamCapture />
-          </ListContainer>
+          </Content>
         </AppContainer>
       </div>
     )
