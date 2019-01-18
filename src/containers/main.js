@@ -2,9 +2,8 @@ import React, {Component} from 'react'
 import styled from 'styled-components'
 import WebcamCapture from '../components/WebcamCapture'
 
-
-
 const AppContainer = styled.div`
+  background-image: url("bg.jpg");
 `
 const ListContainer = styled.div`
   display:flex;
