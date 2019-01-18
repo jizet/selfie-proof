@@ -76,11 +76,9 @@ class WebcamCapture extends Component {
         <Content>
           <Webcam
             audio={false}
-            height={500}
             ref={this.setRef}
             screenshotFormat="image/jpeg"
-            style={{objectFit: 'cover', overflow: 'auto'}}
-            width={500}
+            // style={{objectFit: 'cover', overflow: 'auto'}}
             videoConstraints={videoConstraints}
           />
         </Content>
