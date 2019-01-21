@@ -5,11 +5,6 @@ import WebcamCapture from '../components/WebcamCapture'
 const AppContainer = styled.div`
 `
 const Content = styled.div`
-  display:flex;
-  justify-content: center;
-  flex-direction: row;
-  height: 100%;
-  width: 100%;
 `
 
 class Main extends Component {
