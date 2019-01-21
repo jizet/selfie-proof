@@ -9,10 +9,9 @@ import DialogContentText from '@material-ui/core/DialogContentText';
 import DialogTitle from '@material-ui/core/DialogTitle';
 
 const Container = styled.div`
-display: block;
-margin-left: auto;
-margin-right: auto;
-width: 40%;
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
 `
 const Content = styled.div`
 `
@@ -97,9 +96,7 @@ class WebcamCapture extends Component {
           >
             <DialogTitle id="alert-dialog-title">{"Are you sure you want to upload and share and do you give concent?"}</DialogTitle>
             <DialogContent>
-              <DialogContentText id="alert-dialog-description">
-                <img src={this.state.screenshot} />
-              </DialogContentText>
+                <img style={{width: '95%'}} src={this.state.screenshot} />
             </DialogContent>
             <DialogActions>
               <Button onClick={this.handleClose} color="primary">
