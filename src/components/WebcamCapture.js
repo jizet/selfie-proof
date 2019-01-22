@@ -50,7 +50,7 @@ class WebcamCapture extends Component {
   };
 
   submitImage = () => {
-    fetch('http://52.166.161.124/api/demo/selfie', {
+    fetch('https://adico.westeurope.cloudapp.azure.com/api/demo/selfie', {
       method: 'POST',
       body: JSON.stringify({
         ContentType: 'image/jpeg',
