@@ -5,7 +5,6 @@ import styled from 'styled-components'
 import Dialog from '@material-ui/core/Dialog';
 import DialogActions from '@material-ui/core/DialogActions';
 import DialogContent from '@material-ui/core/DialogContent';
-import DialogContentText from '@material-ui/core/DialogContentText';
 import DialogTitle from '@material-ui/core/DialogTitle';
 
 const Container = styled.div`
@@ -24,6 +23,7 @@ class WebcamCapture extends Component {
     super(props)
     this.state = {
       screenshot: '',
+      rawImage: '',
       open: false
     }
   }
@@ -43,23 +43,25 @@ class WebcamCapture extends Component {
 
   capture = () => {
     const imageSrc = this.webcam.getScreenshot();
+    var strImage = imageSrc.replace(/^data:image\/[a-z]+;base64,/, "");
+    this.setState({ rawImage: strImage})
     this.setState({ screenshot: imageSrc})
     this.handleClickOpen();
   };
 
   submitImage = () => {
-    var url = 'https://example.com/profile';
-    const data = {image: this.state.screenshot}
-    fetch(url, {
+    fetch('http://52.166.161.124/api/demo/selfie', {
       method: 'POST',
-      mode: 'no-cors',
-      body: JSON.stringify(data),
-      headers:{
+      body: JSON.stringify({
+        ContentType: 'image/jpeg',
+        Content: this.state.rawImage
+      }),
+      headers: {
         'Content-Type': 'application/json'
       }
-    }).then(res => res.json())
-    .catch(error => console.error('Error:', error))
-    .then(response => console.log('Success:', response));
+    })
+    .then( res => console.log(res))
+    .catch( error => console.log(error))
     this.setState({ open: false });
   }
 
@@ -75,7 +77,6 @@ class WebcamCapture extends Component {
             audio={false}
             ref={this.setRef}
             screenshotFormat="image/jpeg"
-            // style={{objectFit: 'cover', overflow: 'auto'}}
             videoConstraints={videoConstraints}
           />
         </Content>
